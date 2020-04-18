@@ -1,0 +1,23 @@
+// Variables Bootstrap 4
+
+/*colors*/
+$body-color:                #ffffff;
+
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont,"Myriad Pro","Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" ;
+$font-family-base:            $font-family-sans-serif ;
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+);
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1170px,
+);
+
+$h2-font-size:                1.5rem;
