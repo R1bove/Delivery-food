@@ -1,23 +1,47 @@
-// Variables Bootstrap 4
-
 /*colors*/
 $body-color:                #ffffff;
+$gray-border:              #D9D9D9;
+$banner-color-font:            #302C34;
+$color-rating: #FFC107;
+$color-gray:  #8C8C8C;
 
-$font-family-sans-serif:      -apple-system, BlinkMacSystemFont,"Myriad Pro","Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" ;
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont,Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" ;
 $font-family-base:            $font-family-sans-serif ;
+$h1-font-size:                2.16em;
+$h2-font-size:                2em;
+$h3-font-size:                1.33em;
+$font-bold:                   bold;
 
 $grid-breakpoints: (
         xs: 0,
         sm: 576px,
         md: 768px,
         lg: 992px,
-        xl: 1200px,
+        xl: 1440px,
 );
 $container-max-widths: (
         sm: 540px,
         md: 720px,
         lg: 960px,
-        xl: 1170px,
+        xl: 1200px,
 );
 
-$h2-font-size:                1.5rem;
+@mixin for-phone-only {
+  @media (max-width: 599px) { @content; }
+}@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) { @content; }
+}@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) { @content; }
+}@mixin for-desktop-up {
+  @media (min-width: 1200px) { @content; }
+}@mixin for-big-desktop-up {
+  @media (min-width: 1800px) { @content; }
+}@mixin for-medium {
+  @media (max-width: 1024px) { @content; }
+}
+@mixin for-medium-1 {
+  @media (max-width: 900px) { @content; }
+}
+@mixin for-medium-2 {
+  @media (max-width: 768px) { @content; }
+}

@@ -1,11 +1,8 @@
 //  Дефолтные значения
+@import "reset";
 @import "variables";
 
 // Подключение своих SCSS файлов
 @import "vendor";
-@import "bankicic";
-@import "nav";
-@import "tables";
-@import "forms";
+@import "food";
 @import "webfonts";
-
