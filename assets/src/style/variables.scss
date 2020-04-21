@@ -12,36 +12,21 @@ $h2-font-size:                2em;
 $h3-font-size:                1.33em;
 $font-bold:                   bold;
 
-$grid-breakpoints: (
-        xs: 0,
-        sm: 576px,
-        md: 768px,
-        lg: 992px,
-        xl: 1440px,
-);
-$container-max-widths: (
-        sm: 540px,
-        md: 720px,
-        lg: 960px,
-        xl: 1200px,
-);
 
-@mixin for-phone-only {
-  @media (max-width: 599px) { @content; }
-}@mixin for-tablet-portrait-up {
-  @media (min-width: 600px) { @content; }
-}@mixin for-tablet-landscape-up {
-  @media (min-width: 900px) { @content; }
-}@mixin for-desktop-up {
-  @media (min-width: 1200px) { @content; }
-}@mixin for-big-desktop-up {
-  @media (min-width: 1800px) { @content; }
-}@mixin for-medium {
-  @media (max-width: 1024px) { @content; }
-}
-@mixin for-medium-1 {
-  @media (max-width: 900px) { @content; }
-}
-@mixin for-medium-2 {
-  @media (max-width: 768px) { @content; }
+//maixns
+
+@mixin for-size($size) {
+  @if $size == phone-portrait-up {
+    @media  (max-width: 767px) { @content; }
+  } @else if $size == phone-landscape-up {
+    @media (max-width: 900px) { @content; }
+  } @else if $size == tablet-portrait-up {
+    @media (max-width: 1024px) { @content; }
+  } @else if $size == tablet-landscape-up {
+    @media (max-width: 1280px) { @content; }
+  } @else if $size == desktop-up {
+    @media (max-width: 1920px) { @content; }
+  } @else if $size == big-desktop-up {
+    @media (min-width: 1921px) { @content; }
+  }
 }

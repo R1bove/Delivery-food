@@ -68,13 +68,13 @@ body {
       h1 {
         margin-bottom: 1rem;
       }
-      @include for-medium {
+      @include for-size(tablet-portrait-up) {
         font-size: 1.75vw;
       }
-      @include for-medium-1 {
+      @include for-size(phone-landscape-up){
         font-size: 0.85rem;
       }
-      @include for-medium-2 {
+      @include for-size(phone-portrait-up) {
         background-position-x: calc(47vw - 100%);
         background-size: 32rem;
       }
@@ -170,13 +170,13 @@ body {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      @media (max-width: 768px) {
+      @include for-size (phone-portrait-up) {
         justify-content: center;
       }
       .footer__nav {
         display: flex;
         flex-wrap: wrap;
-        @media (max-width: 768px) {
+        @include for-size (phone-portrait-up) {
           justify-content: center;
           margin-bottom: 1rem;
         }
@@ -187,7 +187,7 @@ body {
         .footer__nav_list {
           display: flex;
           flex-wrap: wrap;
-          @media (max-width: 768px) {
+          @include for-size (phone-portrait-up) {
             justify-content: center;
             margin: 1rem 0;
           }
