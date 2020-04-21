@@ -19,16 +19,22 @@ footer {grid-area: footer}
   "footer footer footer footer"
 }
 body {
+  //header
   header {
     padding: 2.25rem 0;
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-
+      flex-wrap: wrap;
       #search-form {
         flex: 0.8;
-
+        @include for-size(phone-portrait-up) {
+          flex: auto;
+          order: 3;
+          width: 100%;
+          margin-top: 1rem;
+        }
         .input-search {
           width: calc(100% - 2em);
           background-image: url("../img/header/nav/home__ico.svg");
@@ -38,6 +44,9 @@ body {
         .btn-primary {
           background: #1890FF;
           color: #ffffff;
+          @include for-size(phone-portrait-up) {
+            display: none;
+          }
         }
         .btn-secondary {
           border: 1px solid $gray-border;
@@ -46,10 +55,22 @@ body {
           i {
             color: #8C8C8C;;
           }
+          @include for-size(phone-portrait-up) {
+            display: none;
+          }
+        }
+        .btn-primary-m, .btn-secondary-m{
+          background: transparent;
+          display: none;
+          font-size: 100%;
+          @include for-size(phone-portrait-up) {
+            display: inline-block;
+          }
         }
       }
     }
   }
+  //main
   .main {
     padding-bottom: 6rem;
     background: linear-gradient(180deg, rgba(245, 245, 245, 0) 1.04%, #F5F5F5 100%);
@@ -85,8 +106,13 @@ body {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        @include for-size(phone-portrait-up) {
+          flex-direction: column;
+        }
         .restaurant__header_title {
-
+          @include for-size(phone-portrait-up) {
+            margin-bottom: 1rem;
+          }
         }
         .restaurant__header_search {
           flex-basis: 26%;
@@ -164,6 +190,7 @@ body {
       }
     }
   }
+  //footer
   footer {
     padding: 3rem 0;
     .footer__content {
