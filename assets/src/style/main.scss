@@ -1,8 +1,8 @@
 //  Дефолтные значения
 @import "reset";
 @import "variables";
+@import "vendor";
 
 // Подключение своих SCSS файлов
-@import "vendor";
 @import "food";
 @import "webfonts";

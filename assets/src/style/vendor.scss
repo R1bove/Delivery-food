@@ -39,6 +39,116 @@ input{
     cursor: pointer;
   }
 }
-img {
-
+.btn-primary {
+  background: #1890FF;
+  color: #ffffff;
+}
+.btn-secondary {
+  border: 1px solid $gray-border;
+  background: transparent;
+  color: #595959;
+}
+.quantity-btn {
+  border: 1px solid $color-blue;
+  border-radius: 2px;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  color: $color-blue;
+}
+.main-headline {
+  padding: $main-headline;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+.price {
+  font-weight: $font-bold;
+}
+.rating-info {
+  min-width: 250px;
+  text-decoration: none;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  .rate {
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    color: $color-rating;
+    i {
+      font-size: 0.75em;
+      margin-right: 0.25rem;
+    }
+  }
+  .price {
+    position: relative;
+    &:after {
+      content: "\2022";
+      position: absolute;
+      left: 5.1rem;
+    }
+  }
+  .price, .type {
+    color: $color-gray;
+  }
+}
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: rgba(0, 0, 0, 0.4);
+  .modal-dialog {
+    display: grid;
+    gap: 2rem;
+    padding: 2.8rem 2.5rem;
+    background-color: #ffffff;
+    max-width: 780px;
+    width: 95%;
+    border-radius: 5px;
+    margin: auto;
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .close-modal {
+        font-size: 3rem;
+      }
+    }
+    .modal-body {
+      .cart-list {
+        .cart-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid $gray-border;
+          padding: 0.75rem 0 0.5rem;
+          .item-price__inner {
+            display: grid;
+            grid-template-columns: 0.75fr 1fr;
+            align-items: center;
+            .quantity {
+              display: flex;
+              align-items: center;
+              form {
+                width: 40px;
+                input {
+                  margin: 0;
+                  padding: 0;
+                  border: none;
+                  width: 100%;
+                  text-align: center;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

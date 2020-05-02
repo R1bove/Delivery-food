@@ -37,3 +37,6 @@ $(document).on('click','.pass_show .lock-ico', function(){
     $(this).prev().attr('type', function(index, attr){return attr == 'password' ? 'text' : 'password'; });
 
 });
+
+    $(document).pjax('.restaurant__cards_card a', '.pjax-container', {fragment: '.pjax-container'});
+

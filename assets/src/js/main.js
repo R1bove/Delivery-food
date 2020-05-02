@@ -5,5 +5,6 @@
 //= ../../../node_modules/popper.js/dist/umd/popper.js
 
 // Импортируем другие js-файлы
+//= jquery.pjax.js
 //= my.js
 
