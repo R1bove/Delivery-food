@@ -64,6 +64,9 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
+.hidden {
+  overflow: hidden;
+}
 .price {
   font-weight: $font-bold;
 }
@@ -101,8 +104,11 @@ input::-webkit-inner-spin-button {
   z-index: 999;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   background: rgba(0, 0, 0, 0.4);
+  &.is-open {
+    display: flex;
+  }
   .modal-dialog {
     display: grid;
     gap: 2rem;
