@@ -1,17 +1,16 @@
 {
-  "name": "Delivery food",
+  "name": "delivery-food",
   "version": "1.0.0",
-  "description": "Start project Delivery food with use Bootstrap 4",
-  "author": "Alexei Melnik",
-  "license": "MIT",
+  "description": "start project delivery food with grid",
+  "author": "alexei melnik",
+  "license": "mit",
   "repository": {
     "type": "git",
     "url": "git://github.com/AlexeyMelnik22/delivery-food.git"
   },
   "dependencies": {
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.7",
-    "bootstrap": "^4.3.1"
+    "popper.js": "^1.16.1"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",

@@ -48,6 +48,11 @@ input{
   background: transparent;
   color: #595959;
 }
+.btn-warning {
+  border: 1px solid $gray-border;
+  background: $warning-color;
+  color: #ffffff;
+}
 .quantity-btn {
   border: 1px solid $color-blue;
   border-radius: 2px;

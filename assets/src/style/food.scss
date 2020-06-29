@@ -42,6 +42,12 @@ body {
         }
       }
       .nav__buttons {
+        span.user-name {
+          display: none;
+        }
+        .btn-logout {
+          display: none;
+        }
         .btn-primary {
           @include for-size(phone-portrait-up) {
             display: none;
@@ -126,9 +132,9 @@ body {
       }
       .restaurant__cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px,388px));
+        grid-template-columns: repeat(auto-fill,minmax(280px,max-content));
         grid-row-gap: 1.5em;
-        grid-column-gap: 1em;
+        grid-column-gap: 1.5em;
         justify-content: center;
         .restaurant__cards_card {
           width: 100%;

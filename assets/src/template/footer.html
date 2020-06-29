@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="footer__content animated fadeInUp">
 			<nav class="footer__nav">
-				<a href="tanuki.html" class="logo"><img src="../img/header/logo.svg" alt="logo"></a>
+				<a href="" class="logo"><img src="../img/header/logo.svg" alt="logo"></a>
 				<ul class="footer__nav_list">
 					<li class="link"><a href="">Ресторанам</a> </li>
 					<li class="link"><a href="">Курьерам</a></li>
@@ -23,13 +23,13 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal" id="modal">
+	<div class="modal modal-cart" id="modal-cart">
 		<div class="modal-dialog">
 			<div class="modal-header">
 				<h2>Корзина</h2>
-				<a href="#" class="close-modal">
+				<button href="#" class="close-modal close-modal_cart">
 					&times;
-				</a>
+				</button>
 			</div>
 			<div class="modal-body">
 				<div class="cart-list">
@@ -79,5 +79,27 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/main.min.js"></script>
+	<div class="modal modal-auth" id="modal-auth">
+		<div class="modal-dialog">
+			<div class="modal-header">
+				<h2>Войти</h2>
+				<button class="close-modal close-modal_auth">
+					&times;
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="login" class="auth-from" id="authForm">
+					<label  class="label-auth">
+						<input type="text" class="login-field" id="login-field">
+						<input type="text" class="pswrd-field" id="pswrd-field">
+						<button type="submit" class="btn btn-auth-form">войти</button>
+					</label>
+				</form>
+			</div>
+			<div class="modal-footer">
+
+			</div>
+		</div>
+	</div>
+	<script src="js/main.js"></script>
 </footer>
