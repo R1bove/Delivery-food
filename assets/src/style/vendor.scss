@@ -69,8 +69,9 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
-.hidden {
+.o-hidden {
   overflow: hidden;
+  margin-right: 17px;
 }
 .price {
   font-weight: $font-bold;
