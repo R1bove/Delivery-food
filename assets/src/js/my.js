@@ -36,6 +36,21 @@ const cardsRestaurants = document.querySelector('#restaurant__cards');
 const cardsFoodRestaurant = document.querySelector('#food__cards');
 let newcard = localStorage.getItem("card");
 
+
+const getData = async function (url) {
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        document.location.href = "/404.html";
+        throw new Error(`Ошибка по адресу ${url}, статус ошибки ${response.status}!`);
+
+    }
+
+    return await response.json();
+};
+getData('./db/partners.json');
+
 function authorized() {
     console.log("авторизован");
     btnAuth.style.display = "none";
@@ -90,19 +105,23 @@ checkAuth();
 
 //create card
 
-function createCardRestaurant() {
+function createCardRestaurant(restaurant) {
+
+     let { image, kitchen, name, price, products, stars, time_of_delivery } = restaurant;
+
+
     const card = `<div class="restaurant__cards_card card animated zoomInDown">
-                            <a>
-                                <img src="../img/main/cards/tanuki.jpg" alt="">
+                            <a href="/restaurant-shop.html" data-products = "${products}">
+                                <img src="${image}" alt="">
                                 <div class="card__info">
                                     <div class="card__info_headline">
-                                        <h3 class="card__title">Тануки</h3>
-                                        <span class="time">50 мин</span>
+                                        <h3 class="card__title">${name}</h3>
+                                        <span class="time">${time_of_delivery}</span>
                                     </div>
                                     <div class="card__info_short-desc">
-                                        <span class="rate"><i class ="fas fa-star"></i>4.5</span>
-                                        <span class="price">От 900 ₽ </span>
-                                        <span class="type">Пицца </span>
+                                        <span class="rate"><i class ="fas fa-star"></i>${stars}</span>
+                                        <span class="price">${price} ₽ </span>
+                                        <span class="type">${kitchen} </span>
                                     </div>
                                 </div>
                             </a>
@@ -110,19 +129,23 @@ function createCardRestaurant() {
     cardsRestaurants.insertAdjacentHTML('beforeend', card);
 }
 if (cardsRestaurants) {
-    createCardRestaurant();
+    getData('./db/partners.json').then(function (data) {
+        data.forEach(createCardRestaurant);
+    });
     cardsRestaurants.addEventListener('click', openGoods);
 }
 
-function createCardGood() {
-    const foodCard = `<div class="restaurant__cards_card card animated zoomInLeft">
-                            <img src="../img/main/cards-menu/roll-ugor-standart.jpg" alt="">
+function createCardGood(goods) {
+    const { description, id, image, name, price } = goods;
+
+    const foodCard = `<div class="restaurant__cards_card card animated zoomInLeft" id="${id}">
+                            <img src="../${image}" alt="">
                             <div class="card__info">
                                 <div class="card__info_headline card__info_headline-menu">
-                                    <h3 class="card__title">Пицца плюс</h3>
+                                    <h3 class="card__title">${name}</h3>
                                 </div>
                                 <div class="card__info_short-desc">
-                                    <span class="desc">Рис, угорь, соус унаги, кунжут, водоросли нори. </span>
+                                    <span class="desc">${description}</span>
                                 </div>
                                 <div class="card-footer">
                                     <button class="btn btn-primary">
@@ -130,7 +153,7 @@ function createCardGood() {
                                         <i class="far fa-shopping-cart"></i>
                                     </button>
                                     <div class="price">
-                                        <span>250 ₽</span>
+                                        <span>${price} ₽</span>
                                     </div>
                                 </div>
                             </div>
@@ -142,17 +165,21 @@ function createCardGood() {
 
 if (newcard) {
     document.addEventListener("DOMContentLoaded", function() {
-        createCardGood();
+        getData(`./db/${newcard}`).then(function (data) {
+            data.forEach(createCardGood);
+        });
+        console.log(newcard);
     });
 }
 
 
 function openGoods(event) {
-    const typeRestaurant = event.target.closest("a");
+    const typeRestaurant = event.target.closest("a").dataset.products;
     localStorage.setItem('card', typeRestaurant);
     console.log(typeRestaurant);
     if (typeRestaurant) {
         // document.location.href = "/restaurant-shop.html";
     }
 }
+
 
