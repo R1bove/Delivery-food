@@ -19,21 +19,24 @@ var path = {
         js: 'assets/build/js/',
         css: 'assets/build/css/',
         img: 'assets/build/img/',
-        webfonts: 'assets/build/webfonts/'
+        webfonts: 'assets/build/webfonts/',
+        json: 'assets/build/db/'
     },
     src: {
         html: 'assets/src/*.html',
         js: 'assets/src/js/main.js',
         style: 'assets/src/style/main.scss',
         img: 'assets/src/img/**/*.*',
-        webfonts: 'assets/src/webfonts/**/*.*'
+        webfonts: 'assets/src/webfonts/**/*.*',
+        json: 'assets/src/db/*.json'
     },
     watch: {
         html: 'assets/src/**/*.html',
         js: 'assets/src/js/**/*.js',
         css: 'assets/src/style/**/*.scss',
         img: 'assets/src/img/**/*.*',
-        webfonts: 'assets/srs/webfonts/**/*.*'
+        webfonts: 'assets/srs/webfonts/**/*.*',
+        json: 'assets/src/db/*.json'
     },
     clean: './assets/build/*'
 };
@@ -116,6 +119,11 @@ gulp.task('webfonts:build', function () {
     return gulp.src(path.src.webfonts)
         .pipe(gulp.dest(path.build.webfonts));
 });
+//json db
+gulp.task('json:build', function () {
+    return gulp.src(path.src.json)
+        .pipe(gulp.dest(path.build.json));
+});
 // обработка картинок
 gulp.task('image:build', function () {
     return gulp.src(path.src.img) // путь с исходниками картинок
@@ -151,7 +159,8 @@ gulp.task('build',
             'css:build',
             'js:build',
             'webfonts:build',
-            'image:build'
+            'image:build',
+            'json:build'
         )
     )
 );

@@ -72,6 +72,7 @@ function authorized() {
 }
 function toggleModalAuth() {
     modal_auth.classList.toggle("is-open");
+    loginInput.style.borderColor = "#d9d9d9";
 }
 function notAuthorized() {
     btnAuth.addEventListener('click', toggleModalAuth);
@@ -82,14 +83,19 @@ function notAuthorized() {
 
     function logIn(event) {
         event.preventDefault();
-        login = loginInput.value;
-        console.log(login);
-        localStorage.setItem('dfood', login);
-        toggleModalAuth()
-        btnAuth.removeEventListener('click', toggleModalAuth);
-        close_auth.removeEventListener('click', toggleModalAuth);
-        logInForm.removeEventListener('submit', logIn);
-        checkAuth();
+        if(loginInput.value.trim()) {
+            login = loginInput.value;
+            console.log(login);
+            localStorage.setItem('dfood', login);
+            toggleModalAuth();
+            btnAuth.removeEventListener('click', toggleModalAuth);
+            close_auth.removeEventListener('click', toggleModalAuth);
+            logInForm.removeEventListener('submit', logIn);
+            checkAuth();
+        }
+        else {
+            loginInput.style.borderColor = "red";
+        }
     }
 }
 function checkAuth() {
@@ -116,7 +122,7 @@ function createCardRestaurant(restaurant) {
                                 <div class="card__info">
                                     <div class="card__info_headline">
                                         <h3 class="card__title">${name}</h3>
-                                        <span class="time">${time_of_delivery}</span>
+                                        <span class="time">${time_of_delivery} мин.</span>
                                     </div>
                                     <div class="card__info_short-desc">
                                         <span class="rate"><i class ="fas fa-star"></i>${stars}</span>
@@ -138,8 +144,8 @@ if (cardsRestaurants) {
 function createCardGood(goods) {
     const { description, id, image, name, price } = goods;
 
-    const foodCard = `<div class="restaurant__cards_card card animated zoomInLeft" id="${id}">
-                            <img src="../${image}" alt="">
+    const foodCard = `<div class="restaurant__cards_card food__cards_card card animated zoomInLeft" id="${id}">
+                            <img src="../img/main/cards-menu/roll-ugor-standart.jpg" alt="">
                             <div class="card__info">
                                 <div class="card__info_headline card__info_headline-menu">
                                     <h3 class="card__title">${name}</h3>
@@ -159,22 +165,41 @@ function createCardGood(goods) {
                             </div>
                         </div>`;
     cardsFoodRestaurant.insertAdjacentHTML('beforeend', foodCard);
-    localStorage.removeItem("card");
+    // localStorage.removeItem("card");
 }
 
+if (cardsFoodRestaurant) {
+    if (newcard) {
+        document.addEventListener("DOMContentLoaded", function() {
+            getData(`./db/${newcard}`).then(function (data) {
+                data.forEach(createCardGood);
+            });
+            console.log(newcard);
+            let shopName = localStorage.getItem('shopName');
+            let shopRate = localStorage.getItem('shopRate');
+            let shopPrice = localStorage.getItem('shopPrice');
+            let shopType = localStorage.getItem('shopType');
+            document.querySelector('.restaurant-menu__header h2').textContent = shopName;
+            document.querySelector('.restaurant-menu__header .rate').textContent = shopRate;
+            document.querySelector('.restaurant-menu__header .price').textContent = shopPrice;
+            document.querySelector('.restaurant-menu__header .type').textContent = shopType;
 
-if (newcard) {
-    document.addEventListener("DOMContentLoaded", function() {
-        getData(`./db/${newcard}`).then(function (data) {
-            data.forEach(createCardGood);
         });
-        console.log(newcard);
-    });
+    }
 }
+
 
 
 function openGoods(event) {
     const typeRestaurant = event.target.closest("a").dataset.products;
+    const shopName = event.target.closest("a").querySelector('h3').textContent;
+    const shopRate = event.target.closest("a").querySelector('.rate').textContent;
+    const shopPrice = event.target.closest("a").querySelector('.price').textContent;
+    const shopType = event.target.closest("a").querySelector('.type').textContent;
+    localStorage.setItem('shopName', shopName);
+    localStorage.setItem('shopRate', shopRate);
+    localStorage.setItem('shopPrice', shopPrice);
+    localStorage.setItem('shopType', shopType);
     localStorage.setItem('card', typeRestaurant);
     console.log(typeRestaurant);
     if (typeRestaurant) {
