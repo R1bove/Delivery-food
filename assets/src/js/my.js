@@ -7,6 +7,8 @@ const modal_cart = document.querySelector("#modal-cart");
 const cartBtn = document.querySelector("#cart-btn");
 const overlay = document.querySelector("body");
 const mainCartList = document.querySelector(".main-cart-list");
+const modalPriceTag = document.querySelector(".modal_price-tag");
+const btnCancelCart = document.querySelector(".cancel");
 const cart = [];
 
 cartBtn.addEventListener("click", function (event) {
@@ -17,6 +19,10 @@ cartBtn.addEventListener("click", function (event) {
 close_cart.addEventListener("click", function (event) {
     modal_cart.classList.remove("is-open");
     overlay.classList.remove("o-hidden");
+})
+btnCancelCart.addEventListener("click", function (event) {
+    cart.length = 0;
+    renderItemsCart();
 })
 
 
@@ -116,8 +122,7 @@ checkAuth();
 
 function createCardRestaurant(restaurant) {
 
-     let { image, kitchen, name, price, products, stars, time_of_delivery } = restaurant;
-
+    let { image, kitchen, name, price, products, stars, time_of_delivery } = restaurant;
 
     const card = `<div class="restaurant__cards_card card animated zoomInDown">
                             <a href="/restaurant-shop.html" data-products = "${products}">
@@ -219,6 +224,26 @@ if (cardsFoodRestaurant) {
     }
 }
 
+function changeCount(event) {
+    if(event.target.classList.contains('quantity-btn'))  {
+        const food = cart.find(function(item) {
+            return item.id === event.target.dataset.id;
+        });
+        if(event.target.classList.contains('minus'))  {
+            food.count--;
+            if (food.count < 0) {
+                cart.splice(cart.indexOf(food), 1)
+            }
+        }
+        if(event.target.classList.contains('plus')) {
+            food.count++;
+        }
+        renderItemsCart();
+    }
+}
+
+mainCartList.addEventListener('click', changeCount);
+
 function renderItemsCart() {
     mainCartList.textContent = "";
     cart.forEach(function ({id, title, cost, count}) {
@@ -229,11 +254,9 @@ function renderItemsCart() {
                         <div class="item-price__inner">
                             <strong class="price">${cost}</strong>
                             <div class="quantity">
-                                <button class="quantity-btn minus">-</button>
-                                <form class="" action="send.php" method="post">
-                                    <input class="quantity-value" type="number" value="${count}">
-                                </form>
-                                <button class="quantity-btn plus">+</button>
+                                <button class="quantity-btn minus" data-id = ${id}>-</button>
+                                <input class="quantity-value" type="number" min="0" max="999" value="${count}">
+                                <button class="quantity-btn plus" data-id = ${id}>+</button>
                             </div>
                         </div>
                     </div>
@@ -241,6 +264,12 @@ function renderItemsCart() {
         `;
         mainCartList.insertAdjacentHTML('afterbegin', itemCart);
     })
+
+    const totalPrice = cart.reduce(function (result, item) {
+        return result + (parseFloat(item.cost)*item.count);
+    }, 0)
+
+    modalPriceTag.textContent = totalPrice + " Грн";
 }
 
 function openGoods(event) {

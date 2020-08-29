@@ -147,15 +147,13 @@ input::-webkit-inner-spin-button {
             .quantity {
               display: flex;
               align-items: center;
-              form {
-                width: 40px;
-                input {
-                  margin: 0;
-                  padding: 0;
-                  border: none;
-                  width: 100%;
-                  text-align: center;
-                }
+              input {
+                width: 40px !important;
+                margin: 0;
+                padding: 0;
+                border: none;
+                width: 100%;
+                text-align: center;
               }
             }
           }
