@@ -9,6 +9,7 @@ const overlay = document.querySelector("body");
 const mainCartList = document.querySelector(".main-cart-list");
 const modalPriceTag = document.querySelector(".modal_price-tag");
 const btnCancelCart = document.querySelector(".cancel");
+let login = localStorage.getItem('dfood');
 const cart = [];
 
 cartBtn.addEventListener("click", function (event) {
@@ -22,6 +23,7 @@ close_cart.addEventListener("click", function (event) {
 })
 btnCancelCart.addEventListener("click", function (event) {
     cart.length = 0;
+    localStorage.removeItem('cartkey');
     renderItemsCart();
 })
 
@@ -39,11 +41,24 @@ const btnLogout = document.querySelector("#btn-logout");
 const logInForm = document.querySelector("#authForm");
 const loginInput = document.querySelector("#login-field");
 let  userName = document.querySelector(".user-name");
-let login = localStorage.getItem('dfood');
+
 //cards
 const cardsRestaurants = document.querySelector('#restaurant__cards');
 const cardsFoodRestaurant = document.querySelector('#food__cards');
 let newcard = localStorage.getItem("card");
+
+const loadCart = function ( ) {
+    if (localStorage.getItem(login)) {
+        JSON.parse(localStorage.getItem(login)).forEach(function (item) {
+            cart.push(item);
+        });
+    }
+}
+
+const saveCart = function () {
+    localStorage.setItem(login, JSON.stringify(cart));
+}
+
 
 
 const getData = async function (url) {
@@ -66,11 +81,12 @@ function authorized() {
     btnLogout.style.display = "inline-block";
     userName.style.display = "inline-block";
     userName.textContent = login;
-
     btnLogout.addEventListener("click", logOut);
+    loadCart();
 
     function logOut() {
         login = null;
+        cart.length = 0;
         btnAuth.style.display = "";
         btnLogout.style.display = "";
         userName.style.display = "";
@@ -194,6 +210,7 @@ if (cardsFoodRestaurant) {
             document.querySelector('.restaurant-menu__header .type').textContent = shopType;
 
             cardsFoodRestaurant.addEventListener('click', addToCart);
+
             function addToCart(event) {
                 const btnAddToCart = event.target.closest('.add-to-cart');
 
@@ -219,6 +236,7 @@ if (cardsFoodRestaurant) {
                     }
                     console.log(cart);
                 }
+                saveCart();
             }
         });
     }
@@ -240,6 +258,7 @@ function changeCount(event) {
         }
         renderItemsCart();
     }
+    saveCart();
 }
 
 mainCartList.addEventListener('click', changeCount);
