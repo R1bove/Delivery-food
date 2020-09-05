@@ -26,7 +26,7 @@ input{
 .btn {
   font-size: 16px;
   line-height: 24px;
-  border-radius: 2px;
+  border-radius: 3px;
   border: 1px solid transparent;
   padding: 8px 18px;
   -webkit-transition: .3s ;
@@ -142,20 +142,18 @@ input::-webkit-inner-spin-button {
           align-items: center;
           border-bottom: 1px solid $gray-border;
           padding: 0.75rem 0 0.5rem;
+          flex-wrap: wrap;
+          gap: 1rem;
           .item-price__inner {
-            display: grid;
-            grid-template-columns: 0.75fr 1fr;
+            display: flex;
             align-items: center;
+            justify-content: space-between;
+            flex-basis: 100%;
             .quantity {
               display: flex;
               align-items: center;
-              input {
-                width: 40px !important;
-                margin: 0;
-                padding: 0;
-                border: none;
-                width: 100%;
-                text-align: center;
+              .quantity-value {
+                padding: 0.75rem;
               }
             }
           }
@@ -250,11 +248,11 @@ input::-webkit-inner-spin-button {
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .4}
+  from {opacity: 0}
   to {opacity: 1}
 }
 
 @keyframes fade {
-  from {opacity: .4}
+  from {opacity: 0}
   to {opacity: 1}
 }

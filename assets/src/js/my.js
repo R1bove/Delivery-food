@@ -126,9 +126,11 @@ function notAuthorized() {
 function checkAuth() {
     if (login) {
         authorized();
+        cartBtn.style.display = "inline-block"
     }
     else {
         notAuthorized()
+        cartBtn.style.display = "none"
     }
 }
 checkAuth();
@@ -172,8 +174,8 @@ if (cardsRestaurants) {
 function createCardGood(goods) {
     const { description, id, image, name, price } = goods;
 
-    const foodCard = `<div class="restaurant__cards_card food__cards_card card animated zoomInLeft" id="${id}">
-                            <img src="../img/main/cards-menu/roll-ugor-standart.jpg" alt="">
+    const foodCard = `<div class="restaurant__cards_card food__cards_card card animated fadeIn" id="${id}" data-wow-delay="0.5s"> 
+                            <img src="../img/main/cards-menu/roll-ugor-standart.jpg" alt="${name}">
                             <div class="card__info">
                                 <div class="card__info_headline card__info_headline-menu">
                                     <h3 class="card__title">${name}</h3>
@@ -316,7 +318,6 @@ function openGoods(event) {
 
 
 //Slider
-
 var slideIndex = 1;
 showSlides(slideIndex);
 
@@ -331,9 +332,9 @@ function currentSlide(n) {
 }
 
 function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
     if (n > slides.length) {slideIndex = 1}
     if (n < 1) {slideIndex = slides.length}
     for (i = 0; i < slides.length; i++) {
@@ -344,4 +345,5 @@ function showSlides(n) {
     }
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
+
 }
