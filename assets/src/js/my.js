@@ -149,7 +149,10 @@ function createCardRestaurant(restaurant) {
                                         <span class="time">${time_of_delivery} мин.</span>
                                     </div>
                                     <div class="card__info_short-desc">
-                                        <span class="rate"><i class ="fas fa-star"></i>${stars}</span>
+                                        <div class="rate">
+                                            <i class ="fas fa-star"></i>
+                                            <span>${stars}</span>
+                                        </div>
                                         <span class="price">${price} ₽ </span>
                                         <span class="type">${kitchen} </span>
                                     </div>
@@ -205,7 +208,7 @@ if (cardsFoodRestaurant) {
             let shopPrice = localStorage.getItem('shopPrice');
             let shopType = localStorage.getItem('shopType');
             document.querySelector('.restaurant-menu__header h2').textContent = shopName;
-            document.querySelector('.restaurant-menu__header .rate').textContent = shopRate;
+            document.querySelector('.restaurant-menu__header .rate span').textContent = shopRate;
             document.querySelector('.restaurant-menu__header .price').textContent = shopPrice;
             document.querySelector('.restaurant-menu__header .type').textContent = shopType;
 
@@ -274,7 +277,7 @@ function renderItemsCart() {
                             <strong class="price">${cost}</strong>
                             <div class="quantity">
                                 <button class="quantity-btn minus" data-id = ${id}>-</button>
-                                <input class="quantity-value" type="number" min="0" max="999" value="${count}">
+                                <span class="quantity-value">${count}</span>
                                 <button class="quantity-btn plus" data-id = ${id}>+</button>
                             </div>
                         </div>
@@ -309,3 +312,36 @@ function openGoods(event) {
 }
 
 
+
+
+
+//Slider
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+}
