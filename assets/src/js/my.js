@@ -142,7 +142,7 @@ function createCardRestaurant(restaurant) {
 
     let { image, kitchen, name, price, products, stars, time_of_delivery } = restaurant;
 
-    const card = `<div class="restaurant__cards_card card animated zoomInDown">
+    const card = `<div class="restaurant__cards_card card animated zoomInDown wow">
                             <a href="/restaurant-shop.html" data-products = "${products}">
                                 <img src="${image}" alt="">
                                 <div class="card__info">
@@ -155,7 +155,7 @@ function createCardRestaurant(restaurant) {
                                             <i class ="fas fa-star"></i>
                                             <span>${stars}</span>
                                         </div>
-                                        <span class="price">${price} ₽ </span>
+                                        <span class="price">${price} ₴ </span>
                                         <span class="type">${kitchen} </span>
                                     </div>
                                 </div>
@@ -174,7 +174,7 @@ if (cardsRestaurants) {
 function createCardGood(goods) {
     const { description, id, image, name, price } = goods;
 
-    const foodCard = `<div class="restaurant__cards_card food__cards_card card animated fadeIn" id="${id}" data-wow-delay="0.5s"> 
+    const foodCard = `<div class="restaurant__cards_card food__cards_card card animated fadeIn wow" id="${id}" data-wow-delay="0.5s"> 
                             <img src="../img/main/cards-menu/roll-ugor-standart.jpg" alt="${name}">
                             <div class="card__info">
                                 <div class="card__info_headline card__info_headline-menu">
@@ -189,7 +189,7 @@ function createCardGood(goods) {
                                         <i class="far fa-shopping-cart"></i>
                                     </button>
                                     <div class="price">
-                                        <span>${price} ₽</span>
+                                        <span>${price} ₴</span>
                                     </div>
                                 </div>
                             </div>
@@ -346,4 +346,34 @@ function showSlides(n) {
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
 
+}
+
+
+/*live search*/
+document.querySelector("#input-search").oninput = function () {
+    let val = this.value.trim();
+    let searchItem = document.querySelectorAll(".restaurant__cards_card h3");
+    if (val != '') {
+        searchItem.forEach(function (elem) {
+            if (elem.innerText.search(val) == -1) {
+                elem.closest('.card').classList.add('hide');
+                elem.innerHTML = elem.innerText;
+            }
+            else {
+                elem.closest('.card').classList.remove('hide');
+                let str = elem.innerText;
+                elem.innerHTML = insertMark(str, elem.innerText.search(val), val.length);
+            }
+        });
+    }
+    else {
+        searchItem.forEach(function (elem) {
+            elem.closest('.card').classList.remove('hide');
+            elem.innerHTML = elem.innerText;
+        })
+    }
+}
+
+function insertMark(string, pos, len) {
+    return string.slice(0, pos) + "<mark>" + string.slice(pos, pos+len) + "</mark>" + string.slice(pos+len);
 }

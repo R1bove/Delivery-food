@@ -243,7 +243,6 @@ body {
           user-select: none;
           position: relative;
           &:hover {
-            cursor: pointer;
             .card__info {
               position: initial;
               .card__title {
@@ -353,6 +352,11 @@ body {
           .link {
             padding: 0 0.5rem;
             line-height: 2em;
+            a {
+              &:hover {
+                text-decoration: underline;
+              }
+            }
           }
         }
       }
@@ -361,6 +365,16 @@ body {
         align-items: center;
         .social__link {
           padding: 0 0.5rem;
+          img {
+            -webkit-transition: 0.2s;
+            -moz-transition: 0.2s;
+            -ms-transition: 0.2s;
+            -o-transition: 0.2s;
+            transition: 0.2s;
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
         }
       }
     }
